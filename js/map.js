@@ -75,3 +75,63 @@ async function load() {
 
 load();
 setInterval(load, AUTO_REFRESH_MS);
+
+/* ===== Countdown timer (15 min, starts on button press) ===== */
+(function () {
+    const DURATION_SEC = 15 * 60;
+    const displayEl = document.getElementById('timerDisplay');
+    const startBtn = document.getElementById('timerStartBtn');
+    const resetBtn = document.getElementById('timerResetBtn');
+    if (!displayEl || !startBtn || !resetBtn) return;
+
+    let remaining = DURATION_SEC;
+    let intervalId = null;
+
+    function format(sec) {
+        const m = Math.floor(sec / 60);
+        const s = sec % 60;
+        return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+
+    function render() {
+        displayEl.textContent = format(Math.max(remaining, 0));
+        displayEl.classList.toggle('timer-warn', remaining <= 60 && remaining > 0);
+        displayEl.classList.toggle('timer-up', remaining <= 0);
+    }
+
+    function tick() {
+        remaining -= 1;
+        if (remaining <= 0) {
+            remaining = 0;
+            stop();
+        }
+        render();
+    }
+
+    function start() {
+        if (intervalId || remaining <= 0) return;
+        intervalId = setInterval(tick, 1000);
+        startBtn.textContent = 'Running…';
+        startBtn.disabled = true;
+    }
+
+    function stop() {
+        clearInterval(intervalId);
+        intervalId = null;
+        startBtn.disabled = remaining <= 0;
+        startBtn.textContent = remaining <= 0 ? 'Time up' : 'Start';
+    }
+
+    function reset() {
+        clearInterval(intervalId);
+        intervalId = null;
+        remaining = DURATION_SEC;
+        startBtn.disabled = false;
+        startBtn.textContent = 'Start';
+        render();
+    }
+
+    startBtn.addEventListener('click', start);
+    resetBtn.addEventListener('click', reset);
+    render();
+})();
