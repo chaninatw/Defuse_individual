@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0f14" />
+  <title>Defuse Bomb</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <h1 class="title">Defuse Bomb</h1>
+    <div class="card">
+      <div class="row">
+        <div>Bomb ID: <span id="bombId" class="mono badge"></span></div>
+      </div>
+
+      <div class="grid">
+        <select id="group">
+          <option value="" selected hidden>Group No.</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+        </select>
+
+        <input id="pass" type="text" placeholder="Enter Password" inputmode="text" autocomplete="off" />
+        <p class="hint">ใส่ Password หรือ คำตอบเป็นตัวเลข หรือ ภาษาอังกฤษตัวพิมพ์ใหญ่เท่านั้น</p>
+
+        <div style="display: flex;">
+          <button id="btn" type="button" aria-label="Defuse">Defuse</button>
+          <a id="openProblemUrl" target="_blank" rel="noopener noreferrer" style="margin-left: 0.5rem;">Puzzle</a>
+        </div>
+      </div>
+
+      <div id="msg" class="msg">Loading…</div>
+    </div>
+  </div>
+
+  <script type="application/javascript" src="./js/index.js"></script>
+</body>
+
+</html>
