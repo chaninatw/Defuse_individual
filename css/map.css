@@ -93,6 +93,69 @@ input {
   font-size: medium;
 }
 
+/* Countdown timer */
+.timer-container {
+  padding: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.timer-display {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(36px, 8vw, 56px);
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--text);
+  text-shadow: 0 0 18px rgba(42, 146, 255, 0.25);
+}
+
+.timer-display.timer-warn {
+  color: var(--red);
+  text-shadow: 0 0 18px rgba(255, 93, 93, 0.45);
+}
+
+.timer-display.timer-up {
+  color: var(--red);
+  animation: pulseTimer 1s infinite;
+}
+
+@keyframes pulseTimer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.timer-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.timer-controls button {
+  height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  background: linear-gradient(180deg, #2fdc97, #12a86b);
+  color: #051013;
+}
+
+.timer-controls button.secondary {
+  background: #1b2430;
+  color: #bcd4f0;
+  border: 1px solid var(--outline);
+}
+
+.timer-controls button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 /* Bomb status totals */
 .stats-container {
   padding: 20px;
